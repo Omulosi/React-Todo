@@ -24,6 +24,10 @@ class App extends React.Component {
     this.setState({tasks: [...tasks, newTask]});
   }
 
+  handleSubmit (event) {
+
+  }
+
   render() {
     return (
       <div className='todolist-wrapper'>
@@ -45,7 +49,7 @@ class App extends React.Component {
           </header>
           <section className="todolist-content">
             <TodoList tasks={tasks}/>
-            <TodoForm className="todo-form" handleChange={this.handleChange}/>
+            <TodoForm className="todo-form" handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
           </section>
         </main>
       </div>
