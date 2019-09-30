@@ -1,6 +1,7 @@
 import React from 'react';
 import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
+import tasks from './data';
 
 class App extends React.Component {
   render() {
@@ -23,7 +24,7 @@ class App extends React.Component {
           <header className="todolist-header">
           </header>
           <section className="todolist-content">
-            <TodoList todoItems={[1,2,3]}/>
+            <TodoList tasks={tasks}/>
             <TodoForm className="todo-form"/>
           </section>
         </main>

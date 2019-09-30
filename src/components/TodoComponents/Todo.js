@@ -4,10 +4,11 @@ import React, { Component } from 'react';
 export default class Todo extends Component {
 
   render() {
+    const { todo } = this.props;
     return (
       <div>
         <input type="checkbox"/>
-        <p>To do item</p>
+        <p>{todo.task}</p>
       </div>
     );
   }
