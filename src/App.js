@@ -14,7 +14,7 @@ class App extends React.Component {
     this.handleInput = this.handleInput.bind(this);
   }
 
-  handleInput (event) {
+  handleChange (event) {
     const newTask = {
       name: event.target.value,
       id: uuid(),
@@ -45,7 +45,7 @@ class App extends React.Component {
           </header>
           <section className="todolist-content">
             <TodoList tasks={tasks}/>
-            <TodoForm className="todo-form"/>
+            <TodoForm className="todo-form" handleChange={this.handleChange}/>
           </section>
         </main>
       </div>
