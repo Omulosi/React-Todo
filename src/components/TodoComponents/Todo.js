@@ -4,11 +4,11 @@ import React, { Component } from 'react';
 export default class Todo extends Component {
 
   render() {
-    const { todo } = this.props;
+    const { todo, markComplete } = this.props;
     return (
-      <div>
-        <input type="checkbox"/>
-        <p>{todo.task}</p>
+      <div className="todo">
+        <input type="checkbox" onClick={markComplete.bind(this, todo.id)}/>
+        <p className={todo.completed?`mark-complete`: ''}>{todo.task}</p>
       </div>
     );
   }

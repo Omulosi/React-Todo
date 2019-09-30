@@ -3,6 +3,7 @@ import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
 import tasks from './data';
 import uuid from 'uuid';
+import styles from './App.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -14,6 +15,31 @@ class App extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.markComplete = this.markComplete.bind(this);
+    this.clearTask = this.clearTask.bind(this);
+    this.clearTasks = this.clearTasks.bind(this);
+  }
+
+  clearTask (id) {
+    this.setState( {...this.state, tasks: [...this.state.tasks.filter(
+      todo => todo.id !== id
+    )]} )
+  }
+
+  clearTasks () {
+    this.setState({...this.state, tasks: []})
+  }
+
+
+  markComplete (id) {
+    // Loop through all the tasks and update the completed property of
+    // task with a matching is to true
+    this.setState({...this.state, tasks: this.state.tasks.map((task) => {
+      if (task.id === id) {
+        task.completed = true;
+      }
+      return task;
+    })})
   }
 
   handleChange (event) {
@@ -53,7 +79,8 @@ class App extends React.Component {
           <header className="todolist-header">
           </header>
           <section className="todolist-content">
-            <TodoList tasks={this.state.tasks}/>
+            <button onClick={this.clearTasks}>Clear Todo List</button>
+            <TodoList tasks={this.state.tasks} markComplete={this.markComplete} clearTask={this.cleartask}/>
             <TodoForm 
               className="todo-form" 
               handleChange={this.handleChange}
