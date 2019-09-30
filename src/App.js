@@ -2,8 +2,28 @@ import React from 'react';
 import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
 import tasks from './data';
+import uuid from 'uuid';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tasks: []
+    }
+
+    this.handleInput = this.handleInput.bind(this);
+  }
+
+  handleInput (event) {
+    const newTask = {
+      name: event.target.value,
+      id: uuid(),
+      completed: false
+    }
+
+    this.setState({tasks: [...tasks, newTask]});
+  }
+
   render() {
     return (
       <div className='todolist-wrapper'>
