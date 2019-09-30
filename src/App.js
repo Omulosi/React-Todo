@@ -8,24 +8,29 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tasks: []
+      tasks: [...tasks],
+      task: {task: '', id: null, completed: false},
     }
 
-    this.handleInput = this.handleInput.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange (event) {
     const newTask = {
-      name: event.target.value,
+      task: event.target.value,
       id: uuid(),
       completed: false
     }
 
-    this.setState({tasks: [...tasks, newTask]});
+    this.setState({...this.state, task: newTask});
   }
 
   handleSubmit (event) {
-
+    event.preventDefault();
+    const tasks = [...this.state.tasks, this.state.task];
+    const clearedTask = {task: '', id: null, completed: false};
+    this.setState({tasks: tasks, task: clearedTask});
   }
 
   render() {
@@ -48,8 +53,12 @@ class App extends React.Component {
           <header className="todolist-header">
           </header>
           <section className="todolist-content">
-            <TodoList tasks={tasks}/>
-            <TodoForm className="todo-form" handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
+            <TodoList tasks={this.state.tasks}/>
+            <TodoForm 
+              className="todo-form" 
+              handleChange={this.handleChange}
+              task={this.state.task}
+              handleSubmit={this.handleSubmit}/>
           </section>
         </main>
       </div>
