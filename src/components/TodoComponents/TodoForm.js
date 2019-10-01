@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import uuid from 'uuid';
 
 export default class TodoForm extends Component {
 
@@ -7,7 +6,8 @@ export default class TodoForm extends Component {
     const { handleChange, handleSubmit, task } = this.props;
 
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}
+            className="todo-form">
         <input 
           type="text" 
           placeholder="New Todo..." 
